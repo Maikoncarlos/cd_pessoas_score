@@ -1,4 +1,4 @@
-package com.github.Maikoncarlos.cd_pessoas_score;
+package com.github.maikoncarlos.cd_pessoas_score;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
