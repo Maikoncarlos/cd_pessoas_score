@@ -14,7 +14,7 @@ Criar um serviço do tipo API RESTful, para cadastro de pessoas com score
 2.	Endpoints do serviço
 
 •	POST /pessoa
-o	Informar a seguinte estrutura de dados na inclusão:
+	Informar a seguinte estrutura de dados na inclusão:
 {
 	“nome”: “Fulano de Tal”,
 	“telefone”: “99 99999-9999”,
@@ -23,8 +23,8 @@ o	Informar a seguinte estrutura de dados na inclusão:
 	“estado”: “XX”,
 	“score”: 1000	// Entre 0 e 1000
 }
-o	Adicionar um atributo id automático, além dos dados do POST, durante inclusão dos dados no banco;
-o	Retornar 201 no sucesso da inclusão;
+	Adicionar um atributo id automático, além dos dados do POST, durante inclusão dos dados no banco;
+	Retornar 201 no sucesso da inclusão;
 
 •	GET /pessoa/{id}
 o	Se id encontrado no banco, retornar a seguinte estrutura de dados:
@@ -34,11 +34,11 @@ o	Se id encontrado no banco, retornar a seguinte estrutura de dados:
 	“idade”: 99,
 	“scoreDescricao”: “Recomendável”
 }
-o	Se id encontrado no banco, retornar 200, com a estrutura de dados;
-o	Se id não encontrado no banco, retornar 204 (no content);
+	Se id encontrado no banco, retornar 200, com a estrutura de dados;
+	Se id não encontrado no banco, retornar 204 (no content);
 
 •	GET /pessoa
-o	Retornar uma lista de todo o cadastro, sendo cada item da lista com a seguinte estrutura de dados:
+	Retornar uma lista de todo o cadastro, sendo cada item da lista com a seguinte estrutura de dados:
 [
 	{
 		“nome”: “Fulano de Tal”,
@@ -53,8 +53,8 @@ o	Retornar uma lista de todo o cadastro, sendo cada item da lista com a seguinte
 		“scoreDescricao”: “Insuficiente”
 	}
 ]
-o	Se algum cadastro encontrado no banco, retornar 200, com a estrutura JSON;
-o	Se nenhum item encontrado no banco, retornar 204 (no content);
+	Se algum cadastro encontrado no banco, retornar 200, com a estrutura JSON;
+	Se nenhum item encontrado no banco, retornar 204 (no content);
 
 3.	Lógica do serviço
 
