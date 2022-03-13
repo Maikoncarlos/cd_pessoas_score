@@ -1,6 +1,12 @@
-# cd_pessoas_score
-Criar um serviço do tipo API RESTful, para cadastro de pessoas com score
+#Instruções banco de dados H2
+url: localhost:8080/h2-console
+Driver Class: org.h2.Driver
+JDBC URL: jdbc:h2:mem:testH2
+username: admin
+password: admin
 
+# Instruções para Implementação do projeto cd_pessoas_score
+Criar um serviço do tipo API RESTful, para cadastro de pessoas com score
 
 1.	Para a construção desse serviço, algumas premissas e sugestões
 
@@ -12,7 +18,6 @@ Criar um serviço do tipo API RESTful, para cadastro de pessoas com score
 •	Necessário pelo menos um teste unitário para cada método da camada Service, usando JUnit e Mockito;
 
 2.	Endpoints do serviço
-
 •	POST /pessoa
 	Informar a seguinte estrutura de dados na inclusão:
 {
@@ -60,11 +65,12 @@ o	Se id encontrado no banco, retornar a seguinte estrutura de dados:
 
 •	Montar lógica na camada Service, para retornar o atributo scoreDescricao, correspondente ao score encontrado entre scoreInicial e scoreFinal;
 •	Usar a seguinte tabela para montagem da lógica de score:
-scoreDescricao	scoreInicial	scoreFinal
-Insuficiente	0	200
-Inaceitável	201	500
-Aceitável	501	700
-Recomendável	701	1000
+
+				scoreDescricao		scoreInicial	scoreFinal
+				Insuficiente			0				200
+				Inaceitável				201				500
+				Aceitável				501				700
+				Recomendável			701				1000
 
 4.	Estrutura do Banco de dados
 
