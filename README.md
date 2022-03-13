@@ -1,9 +1,9 @@
 # Instruções banco de dados H2
-url: localhost:8080/h2-console
-Driver Class: org.h2.Driver
-JDBC URL: jdbc:h2:mem:testH2
-username: admin
-password: admin
+• url: localhost:8080/h2-console
+• Driver Class: org.h2.Driver
+• JDBC URL: jdbc:h2:mem:testH2
+• username: admin
+• password: admin
 
 # Instruções para Implementação do projeto cd_pessoas_score
 Criar um serviço do tipo API RESTful, para cadastro de pessoas com score
