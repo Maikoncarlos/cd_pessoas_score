@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
@@ -20,19 +21,22 @@ public class Pessoa implements Serializable {
     @Id
     private Long id;
 
-    @NotBlank
+    @NotNull
     @Column(name = "nome")
     private String nome;
-    @NotBlank
+    @NotNull
     @Column(name = "telefone")
     private String telefone;
+    @NotNull
     @Column(name = "idade")
     private int idade;
+    @NotNull
     @Column(name = "cidade")
     private String cidade;
+    @NotNull
     @Column(name = "estado")
     private String estado;
-    @NotBlank
+    @NotNull
     @Column(name = "score")
     private int score;
 
