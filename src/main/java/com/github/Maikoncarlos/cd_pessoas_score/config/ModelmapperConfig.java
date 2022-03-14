@@ -12,10 +12,3 @@ public class ModelmapperConfig {
         return new ModelMapper();
     }
 }
-
-//        modelMapper.createTypeMap(Pessoa.class, AllPessoaDTO.class)
-//                .addMapping((origem -> origem.getScore(), (dest, value) -> dest.setScore(value)))
-//    }
-
-
-

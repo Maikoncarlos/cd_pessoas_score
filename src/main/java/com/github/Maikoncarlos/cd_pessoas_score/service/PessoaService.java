@@ -30,9 +30,14 @@ public class PessoaService {
     @Autowired
     private ModelMapper modelMapper;
 
+
     public String createPessoa(PessoaDTO pessoaDTO) {
+        return this.createPessoa(pessoaDTO, modelMapper);
+    }
+
+    protected String createPessoa(PessoaDTO pessoaDTO, ModelMapper modelMapper) {
         try {
-            Pessoa pessoa = pessoaRepository.save(pessoaDTOtoPessoa(pessoaDTO));
+            Pessoa pessoa = pessoaRepository.save(pessoaDTOtoPessoa(pessoaDTO, modelMapper));
             return pessoa.getId() > 0 ? "salvo com sucesso" : "";
         } catch (Exception e) {
             return e.getMessage();
@@ -44,36 +49,56 @@ public class PessoaService {
         return validByIdPessoa(pessoaRepository.findById(id));
     }
 
-//    public List<AllPessoaDTO> findAllPessoa() {
-//        List<Pessoa> pessoaList = pessoaRepository.findAll();
-//
-//        //List<AllPessoaDTO> allPessoaDTOList = modelMapper.map(pessoaList, List<AllPessoaDTO>.class);
-//
-//
-//        for (Pessoa p : pessoaList) {
-//            carregarScore(p.getScore());
-//
-//        }
-//
-//        return allPessoaDTOList;
-//    }
+
+    public List<AllPessoaDTO> findAllPessoa() {
+        List<Pessoa> pessoaList = pessoaRepository.findAll();
+        List<AllPessoaDTO> allPessoaDTOList = new ArrayList<>();
+        AllPessoaDTO allPessoaDTO;
+
+        for (Pessoa p : pessoaList) {
+            allPessoaDTO = toAllPessoaDTO(p);
+            allPessoaDTO.setScoreDescricao(carregarScore(p.getScore()));
+            allPessoaDTOList.add(allPessoaDTO);
+        }
+        if(!pessoaList.isEmpty()){
+            return allPessoaDTOList;
+        }else{
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+        }
+
+    }
+
+    private Pessoa pessoaDTOtoPessoa(PessoaDTO pessoaDTO, ModelMapper modelMapper) {
+        return modelMapper.map(pessoaDTO, Pessoa.class);
+    }
+
+    protected AllPessoaDTO toAllPessoaDTO(Pessoa pessoa) {
+        return this.toAllPessoaDTO(pessoa, modelMapper);
+    }
+
+    protected AllPessoaDTO toAllPessoaDTO(Pessoa pessoa, ModelMapper modelMapper) {
+
+        var allPessoaDTO = new AllPessoaDTO();
+        allPessoaDTO.setNome(pessoa.getNome());
+        allPessoaDTO.setCidade(pessoa.getCidade());
+        allPessoaDTO.setEstado(pessoa.getEstado());
+        allPessoaDTO.setScoreDescricao(carregarScore(pessoa.getScore()));
+        return modelMapper.map(pessoa, AllPessoaDTO.class);
+    }
 
     private String carregarScore(int score) {
-        List<Score> scoreList = scoreRepository.findAll();
+        List<Score> scoreList = scoreRepository.findAll(); //Então é esse que eu tenho que mockar pq é esse cara que vai até o banco, eu vou enganar e ciar uns dados para ele não precisar ir até o banco
         for (Score s : scoreList) {
             if (getDescriptionScore(s.getScoreInicial(), s.getScoreFinal(), score)) {
                 return s.getScoreDescricao();
             }
         }
+
         return "";
     }
 
-    private Pessoa pessoaDTOtoPessoa(PessoaDTO pessoaDTO) {
-        return modelMapper.map(pessoaDTO, Pessoa.class);
-    }
-
-    private AllPessoaDTO toAllPessoaDTO(Pessoa pessoa) {
-        return modelMapper.map(pessoa, AllPessoaDTO.class);
+    private Boolean getDescriptionScore(int initScore, int endScore, int pessoaScore) {
+        return pessoaScore >= initScore && pessoaScore <= endScore;
     }
 
     private Optional<ByIdPessoaDTO> validByIdPessoa(Optional<Pessoa> pessoa) {
@@ -100,10 +125,4 @@ public class PessoaService {
         }
 
     }
-
-    private Boolean getDescriptionScore(int initScore, int endScore, int pessoaScore) {
-        return pessoaScore >= initScore && pessoaScore <= endScore;
-    }
-
-
 }
