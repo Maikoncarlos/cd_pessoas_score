@@ -1,7 +1,7 @@
 package com.github.maikoncarlos.cd_pessoas_score.service;
 
-import com.github.maikoncarlos.cd_pessoas_score.dto.AllPessoaDTO;
-import com.github.maikoncarlos.cd_pessoas_score.dto.PessoaDTO;
+import com.github.maikoncarlos.cd_pessoas_score.model.dto.AllPessoaDTO;
+import com.github.maikoncarlos.cd_pessoas_score.model.dto.PessoaDTO;
 import com.github.maikoncarlos.cd_pessoas_score.model.Pessoa;
 import com.github.maikoncarlos.cd_pessoas_score.repository.PessoaRepository;
 import com.github.maikoncarlos.cd_pessoas_score.repository.ScoreRepository;

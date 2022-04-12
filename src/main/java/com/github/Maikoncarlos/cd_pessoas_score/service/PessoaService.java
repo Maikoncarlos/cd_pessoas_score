@@ -1,8 +1,8 @@
 package com.github.maikoncarlos.cd_pessoas_score.service;
 
-import com.github.maikoncarlos.cd_pessoas_score.dto.AllPessoaDTO;
-import com.github.maikoncarlos.cd_pessoas_score.dto.ByIdPessoaDTO;
-import com.github.maikoncarlos.cd_pessoas_score.dto.PessoaDTO;
+import com.github.maikoncarlos.cd_pessoas_score.model.dto.AllPessoaDTO;
+import com.github.maikoncarlos.cd_pessoas_score.model.dto.ByIdPessoaDTO;
+import com.github.maikoncarlos.cd_pessoas_score.model.dto.PessoaDTO;
 import com.github.maikoncarlos.cd_pessoas_score.model.Pessoa;
 import com.github.maikoncarlos.cd_pessoas_score.model.Score;
 import com.github.maikoncarlos.cd_pessoas_score.repository.PessoaRepository;
@@ -87,7 +87,7 @@ public class PessoaService {
     }
 
     private String carregarScore(int score) {
-        List<Score> scoreList = scoreRepository.findAll(); //Então é esse que eu tenho que mockar pq é esse cara que vai até o banco, eu vou enganar e ciar uns dados para ele não precisar ir até o banco
+        List<Score> scoreList = scoreRepository.findAll(); 
         for (Score s : scoreList) {
             if (getDescriptionScore(s.getScoreInicial(), s.getScoreFinal(), score)) {
                 return s.getScoreDescricao();

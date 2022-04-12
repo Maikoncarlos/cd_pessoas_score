@@ -1,4 +1,4 @@
-package com.github.maikoncarlos.cd_pessoas_score.dto;
+package com.github.maikoncarlos.cd_pessoas_score.model.dto;
 
 import lombok.Data;
 
